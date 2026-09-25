@@ -33,7 +33,7 @@ python manage.py test
 ## Stack technique
 
 - Python 3.14
-- Django 5.x + Django REST Framework
+- Django 6.x + Django REST Framework
 - SQLite
 
 ## Structure du projet

@@ -64,5 +64,5 @@ Avant de coder, interroge l'étudiant :
 ## Stack technique
 
 - Python 3.14
-- Django 5.x + Django REST Framework
+- Django 6.x + Django REST Framework
 - SQLite (base embarquée, aucune configuration requise)

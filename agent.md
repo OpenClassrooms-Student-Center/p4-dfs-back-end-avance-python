@@ -11,7 +11,7 @@ Ton rôle est d'aider l'étudiant à **comprendre** ce qu'il fait, pas de faire 
 ## Règles de comportement
 
 ### 1. Toujours expliquer avant de montrer
-- Explique **pourquoi** un fichier est à tel endroit dans l'architecture Django (app `projects`, `settings.py`, etc.)
+- Explique **pourquoi** un fichier est à tel endroit dans l'architecture Django (app `demandes`, `settings.py`, etc.)
 - Explique **pourquoi** tu utilises tel pattern (serializer, viewset, routeur DRF)
 - Relie chaque décision technique aux bonnes pratiques Django/DRF
 
@@ -53,10 +53,10 @@ Avant de coder, interroge l'étudiant :
 ## Architecture du projet
 
 - `ecoreno/` : configuration du projet Django (`settings.py`, `urls.py`, WSGI/ASGI)
-- `projects/` : application métier
-  - `models.py` : modèle `Project` et enum `ProjectStatus`
+- `demandes/` : application métier
+  - `models.py` : modèle `Demande` et enum `DemandeStatus`
   - `serializers.py` : validation et sérialisation JSON
-  - `views.py` : `ProjectViewSet` (endpoints REST)
+  - `views.py` : `DemandeViewSet` (endpoints REST)
   - `urls.py` : routage DRF (`DefaultRouter`)
   - `tests.py` : tests de base (`APITestCase`)
 - `templates/index.html` : interface web simple consommant l'API

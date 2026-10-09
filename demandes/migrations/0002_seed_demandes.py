@@ -1,9 +1,9 @@
 from django.db import migrations
 
 
-def seed_projects(apps, schema_editor):
-    Project = apps.get_model("projects", "Project")
-    Project.objects.create(
+def seed_demandes(apps, schema_editor):
+    Demande = apps.get_model("demandes", "Demande")
+    Demande.objects.create(
         name="Rénovation cuisine",
         owner="Claire",
         budget=8500,
@@ -11,7 +11,7 @@ def seed_projects(apps, schema_editor):
         impact="Faible émission",
         status="IN_PROGRESS",
     )
-    Project.objects.create(
+    Demande.objects.create(
         name="Isolation toiture",
         owner="Julien",
         budget=12000,
@@ -21,17 +21,17 @@ def seed_projects(apps, schema_editor):
     )
 
 
-def remove_seed_projects(apps, schema_editor):
-    Project = apps.get_model("projects", "Project")
-    Project.objects.filter(name__in=["Rénovation cuisine", "Isolation toiture"]).delete()
+def remove_seed_demandes(apps, schema_editor):
+    Demande = apps.get_model("demandes", "Demande")
+    Demande.objects.filter(name__in=["Rénovation cuisine", "Isolation toiture"]).delete()
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("projects", "0001_initial"),
+        ("demandes", "0001_initial"),
     ]
 
     operations = [
-        migrations.RunPython(seed_projects, remove_seed_projects),
+        migrations.RunPython(seed_demandes, remove_seed_demandes),
     ]

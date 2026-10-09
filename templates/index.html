@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Interface simple pour gérer des projets EcoReno" />
+    <meta name="description" content="Interface simple pour gérer des demandes de rénovation EcoReno" />
     <title>EcoReno</title>
     <style>
       :root {
@@ -65,8 +65,8 @@
         cursor: pointer;
       }
       button:hover { background: var(--accent-dark); }
-      .project-list { display: grid; gap: 12px; }
-      .project-item {
+      .demande-list { display: grid; gap: 12px; }
+      .demande-item {
         border: 1px solid var(--border);
         border-radius: 12px;
         padding: 12px;
@@ -83,14 +83,14 @@
     <main class="page">
       <header>
         <h1>EcoReno</h1>
-        <p>Suivez vos projets de rénovation écologique avec une interface simple et accessible.</p>
+        <p>Suivez vos demandes de rénovation écologique avec une interface simple et accessible.</p>
       </header>
 
-      <section class="grid" aria-label="Gestion des projets">
+      <section class="grid" aria-label="Gestion des demandes">
         <div class="card">
-          <h2>Créer un projet</h2>
-          <form id="project-form">
-            <label for="name">Nom du projet</label>
+          <h2>Créer une demande</h2>
+          <form id="demande-form">
+            <label for="name">Nom de la demande</label>
             <input id="name" name="name" required />
 
             <label for="owner">Nom du client</label>
@@ -114,35 +114,35 @@
         </div>
 
         <div class="card">
-          <h2>Projets récents</h2>
-          <div id="project-list" class="project-list" aria-live="polite"></div>
+          <h2>Demandes récentes</h2>
+          <div id="demande-list" class="demande-list" aria-live="polite"></div>
         </div>
       </section>
     </main>
 
     <script>
-      const list = document.getElementById('project-list');
-      const form = document.getElementById('project-form');
+      const list = document.getElementById('demande-list');
+      const form = document.getElementById('demande-form');
 
-      async function loadProjects() {
-        const response = await fetch('/api/projects/');
-        const projects = await response.json();
+      async function loadDemandes() {
+        const response = await fetch('/api/demandes/');
+        const demandes = await response.json();
         list.innerHTML = '';
 
-        if (!projects.length) {
-          list.innerHTML = '<p class="muted">Aucun projet pour le moment.</p>';
+        if (!demandes.length) {
+          list.innerHTML = '<p class="muted">Aucune demande pour le moment.</p>';
           return;
         }
 
-        projects.forEach((project) => {
+        demandes.forEach((demande) => {
           const item = document.createElement('article');
-          item.className = 'project-item';
+          item.className = 'demande-item';
           item.innerHTML = `
-            <h3>${project.name}</h3>
-            <p class="muted">Client : ${project.owner}</p>
-            <p>Budget : ${project.budget} €</p>
-            <p>Description : ${project.description || 'À compléter'}</p>
-            <p>Statut : ${project.status || 'PLANNED'}</p>
+            <h3>${demande.name}</h3>
+            <p class="muted">Client : ${demande.owner}</p>
+            <p>Budget : ${demande.budget} €</p>
+            <p>Description : ${demande.description || 'À compléter'}</p>
+            <p>Statut : ${demande.status || 'PLANNED'}</p>
           `;
           list.appendChild(item);
         });
@@ -153,7 +153,7 @@
         const payload = Object.fromEntries(new FormData(form).entries());
         payload.budget = Number(payload.budget);
 
-        const response = await fetch('/api/projects/', {
+        const response = await fetch('/api/demandes/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -161,11 +161,11 @@
 
         if (response.ok) {
           form.reset();
-          loadProjects();
+          loadDemandes();
         }
       });
 
-      loadProjects();
+      loadDemandes();
     </script>
   </body>
 </html>

@@ -1,6 +1,6 @@
 # EcoReno
 
-Application de gestion de projets de rénovation écologique : API REST (Django REST Framework) et interface web simple pour suivre les projets d'un client (nom, budget, description, impact estimé, statut).
+Application de gestion de demandes de rénovation écologique : API REST (Django REST Framework) et interface web simple pour suivre les demandes d'un client (nom, budget, description, impact estimé, statut).
 
 ## Prérequis
 
@@ -22,7 +22,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-L'application est disponible sur http://localhost:8000/ et l'API sur http://localhost:8000/api/projects/.
+L'application est disponible sur http://localhost:8000/ et l'API sur http://localhost:8000/api/demandes/.
 
 ## Tests
 
@@ -39,17 +39,17 @@ python manage.py test
 ## Structure du projet
 
 - `ecoreno/` : configuration du projet Django (settings, urls, WSGI/ASGI)
-- `projects/` : application métier (modèles, serializers, vues, tests)
+- `demandes/` : application métier (modèles, serializers, vues, tests)
 - `templates/index.html` : interface web
 
 ## API Endpoints
 
 | Méthode | Endpoint | Description |
 | --- | --- | --- |
-| GET | `/api/projects/` | Liste des projets |
-| POST | `/api/projects/` | Création d'un projet |
-| GET | `/api/projects/{id}/` | Détail d'un projet |
-| PUT | `/api/projects/{id}/` | Mise à jour d'un projet |
+| GET | `/api/demandes/` | Liste des demandes |
+| POST | `/api/demandes/` | Création d'une demande |
+| GET | `/api/demandes/{id}/` | Détail d'une demande |
+| PUT | `/api/demandes/{id}/` | Mise à jour d'une demande |
 
 ## Licence
 

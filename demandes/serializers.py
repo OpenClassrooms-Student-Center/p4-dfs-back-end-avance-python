@@ -1,16 +1,16 @@
 from rest_framework import serializers
 
-from .models import Project
+from .models import Demande
 
 
-class ProjectSerializer(serializers.ModelSerializer):
+class DemandeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Project
+        model = Demande
         fields = ["id", "name", "owner", "budget", "description", "impact", "status"]
 
     def validate_name(self, value):
         if not value.strip():
-            raise serializers.ValidationError("Le nom du projet est obligatoire")
+            raise serializers.ValidationError("Le nom de la demande est obligatoire")
         return value
 
     def validate_owner(self, value):

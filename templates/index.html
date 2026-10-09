@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,14 +28,16 @@
         margin: 0 auto;
         padding: 24px;
       }
-      header {
+      .header {
         background: var(--panel);
         border: 1px solid var(--border);
         border-radius: 16px;
         padding: 24px;
         box-shadow: 0 8px 24px rgba(22,49,38,0.06);
       }
-      h1 { margin: 0 0 8px; }
+      .title { font-size: 2rem; font-weight: bold; margin: 0 0 8px; }
+      .card h3, .card h4 { font-size: 1.5rem; }
+      .demande-item h2 { font-size: 1.17rem; }
       p { margin: 0; color: var(--muted); }
       .grid {
         display: grid;
@@ -80,21 +82,20 @@
     </style>
   </head>
   <body>
-    <main class="page">
-      <header>
-        <h1>EcoReno</h1>
+    <div class="page">
+      <div class="header">
+        <div class="title">EcoReno</div>
         <p>Suivez vos demandes de rénovation écologique avec une interface simple et accessible.</p>
-      </header>
+      </div>
 
       <section class="grid" aria-label="Gestion des demandes">
         <div class="card">
-          <h2>Créer une demande</h2>
+          <h4>Créer une demande</h4>
           <form id="demande-form">
             <label for="name">Nom de la demande</label>
             <input id="name" name="name" required />
 
-            <label for="owner">Nom du client</label>
-            <input id="owner" name="owner" required />
+            <input id="owner" name="owner" placeholder="Nom du client" required />
 
             <label for="budget">Budget</label>
             <input id="budget" name="budget" type="number" min="1" required />
@@ -114,11 +115,11 @@
         </div>
 
         <div class="card">
-          <h2>Demandes récentes</h2>
+          <h3>Demandes récentes</h3>
           <div id="demande-list" class="demande-list" aria-live="polite"></div>
         </div>
       </section>
-    </main>
+    </div>
 
     <script>
       const list = document.getElementById('demande-list');
@@ -138,7 +139,7 @@
           const item = document.createElement('article');
           item.className = 'demande-item';
           item.innerHTML = `
-            <h3>${demande.name}</h3>
+            <h2>${demande.name}</h2>
             <p class="muted">Client : ${demande.owner}</p>
             <p>Budget : ${demande.budget} €</p>
             <p>Description : ${demande.description || 'À compléter'}</p>
